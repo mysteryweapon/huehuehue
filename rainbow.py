@@ -6,7 +6,7 @@ import subprocess
 from huerc import *
 
 sleep_interval=.1
-amount=8000
+amount=1000
 max=65535
 bulbs=[1,2,4]
 
