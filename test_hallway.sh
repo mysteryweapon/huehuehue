@@ -9,6 +9,6 @@ do
         echo
         echo
     fi
-    sleep 1
+    sleep 300
 done
 

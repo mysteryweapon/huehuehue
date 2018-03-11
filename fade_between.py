@@ -5,7 +5,7 @@ import time
 import subprocess
 from huerc import *
 
-bulbs=[3]
+#bulbs=[1,2,4]
 colors=[
         { 'hue': 8418, 'bri': 254, 'sat': 140},
         { 'hue': 1, 'bri': 60, 'sat': 255}
@@ -21,7 +21,7 @@ def doColor(bulb, hue, bri, sat):
              % (hue_bridge, api_key, bulb, h, b, s))
 
 
-def fadeBetween(colors, totaltime):
+def fadeBetween(bulbs, colors, totaltime):
     interval=totaltime/100.0
     count=0
     for c in colors:
@@ -57,4 +57,4 @@ def fadeBetween(colors, totaltime):
             count+=1
 
 
-fadeBetween(colors,2700)
+#fadeBetween(colors,60)
