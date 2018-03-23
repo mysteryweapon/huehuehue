@@ -3,7 +3,9 @@ Just a project to mess around with hue bulbs
 
 
 You'll have to edit the huerc.py to add 2 things:
+
    hue_bridge: ip or hostname of your hue bridge
+
    api_key: you api key to interact with your hue bridge
 
 If you are unfamiliar with how to get an api key, check out the philips hue api key doc here:
