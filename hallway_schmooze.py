@@ -8,7 +8,7 @@ from fade_between import *
 bulbs=[3]
 colors=[
         { 'hue': 8418, 'bri': 254, 'sat': 140},
-        { 'hue': 1, 'bri': 40, 'sat': 255}
+        { 'hue': 1, 'bri': 80, 'sat': 255}
        ]
 
 
