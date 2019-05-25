@@ -5,10 +5,10 @@ import time
 import subprocess
 from huerc import *
 
-sleep_interval=.1
+sleep_interval=5
 amount=1000
 max=65535
-bulbs=[1,2,4]
+bulbs=[4]
 
 while True:
     c = amount

@@ -14,7 +14,18 @@ from huerc import *
 
 NUM_CLUSTERS = 5
 bulbs=[4]
-sleep_interval=.01
+sleep_interval=1
+def pixbuf2image(pix):
+    """Convert gdkpixbuf to PIL image"""
+    data = pix.get_pixels()
+    w = pix.props.width
+    h = pix.props.height
+    stride = pix.props.rowstride
+    mode = "RGB"
+    if pix.props.has_alpha == True:
+        mode = "RGBA"
+    im = Image.frombytes(mode, (w, h), data, "raw", mode, stride)
+    return im
 
 while [ 1 ]:
   w = gtk.gdk.get_default_root_window()
@@ -22,14 +33,7 @@ while [ 1 ]:
   print "The size of the window is %d x %d" % sz
   pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,False,8,sz[0],sz[1])
   pb = pb.get_from_drawable(w,w.get_colormap(),0,0,0,0,sz[0],sz[1])
-  if (pb != None):
-      pb.save("screenshot.png","png")
-      print "Screenshot saved to screenshot.png."
-  else:
-      print "Unable to get the screenshot."
-
-  print('reading image')
-  im = Image.open('screenshot.png')
+  im = pixbuf2image(pb)
   im = im.resize((150, 150))      # optional, to reduce time
   ar = np.asarray(im)
   shape = ar.shape
@@ -47,10 +51,24 @@ while [ 1 ]:
   colour = binascii.hexlify(bytearray(int(c) for c in peak)).decode('ascii')
   print('most frequent is %s (#%s)' % (peak, colour))
 
-  h,l,s = colorsys.rgb_to_hls(peak[0],peak[1],peak[2])
-  print(int(h),int(l),int(s))
+  #r=int(peak[0]/255)
+  #g=int(peak[1]/255)
+  #b=int(peak[2]/255)
+  r=peak[0]/255
+  g=peak[1]/255
+  b=peak[2]/255
+  print(r,g,b)
+  h,s,l=colorsys.rgb_to_hsv(r,g,b)
+  h *= 255
+  h *= 255
+  s *= 255
+  l *= 255
+  print(h,s,l)
 
   for i in bulbs:
+    #print("curl -XPUT -s http://%s/api/%s/lights/%s/state -d \
+    #          '{\"on\": true, \"hue\": %s, \"bri\": %s, \"sat\": %s}' -o - >/dev/null" \
+    #         % (hue_bridge, api_key, i, int(h), int(l), int(s)))
     os.system("curl -XPUT -s http://%s/api/%s/lights/%s/state -d \
               '{\"on\": true, \"hue\": %s, \"bri\": %s, \"sat\": %s}' -o - >/dev/null" \
              % (hue_bridge, api_key, i, int(h), int(l), int(s)))

@@ -60,8 +60,8 @@ def newdone():
 
 
 target_colors = [
-                    {"bulb": 1},
-                    {"bulb": 2},
+                    #{"bulb": 1},
+                    #{"bulb": 2},
                     {"bulb": 4}
                 ]
 

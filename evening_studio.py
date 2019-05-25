@@ -10,4 +10,4 @@ colors=[
         { 'hue': 40552, 'bri': 255, 'sat': 8},
         { 'hue': 65068, 'bri': 255, 'sat': 255}
        ]
-fadeBetween(bulbs, colors,60)
+fadeBetween(bulbs, colors,7200)
