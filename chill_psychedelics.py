@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import random
 import os
 import time
@@ -60,8 +60,6 @@ def newdone():
 
 
 target_colors = [
-                    #{"bulb": 1},
-                    #{"bulb": 2},
                     {"bulb": 4}
                 ]
 

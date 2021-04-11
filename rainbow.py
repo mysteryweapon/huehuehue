@@ -1,11 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import random
 import os
 import time
 import subprocess
 from huerc import *
+from fade_between import *
 
-sleep_interval=5
+sleep_interval=.1
 amount=1000
 max=65535
 bulbs=[4]
@@ -20,10 +21,7 @@ while True:
             mycolor+=c
             while mycolor > max:
                 mycolor-=max
-
-            os.system("curl -XPUT -s http://%s/api/%s/lights/%s/state -d \
-                      '{\"on\": true, \"hue\": %s, \"bri\": %s, \"sat\": %s}' -o - >/dev/null" \
-                     % (hue_bridge, api_key, i, mycolor, 255, 255))
+            doColor(i, mycolor, 255, 255)
 
             time.sleep(sleep_interval)
             count+=1

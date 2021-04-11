@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import random
 import os
 import time
@@ -11,8 +11,20 @@ colors=[
         { 'hue': 1, 'bri': 60, 'sat': 255}
        ]
 
+def startBulb(bulb):
+    #print("%s %s %s %s" %(bulb,hue,bri,sat))
+    os.system("curl -XPUT -s http://%s/api/%s/lights/%s/state -d \
+              '{\"on\": true}' -o - >/dev/null" \
+             % (hue_bridge, api_key, bulb))
+
+def killBulb(bulb):
+    #print("%s %s %s %s" %(bulb,hue,bri,sat))
+    os.system("curl -XPUT -s http://%s/api/%s/lights/%s/state -d \
+              '{\"on\": false}' -o - >/dev/null" \
+             % (hue_bridge, api_key, bulb))
+
 def doColor(bulb, hue, bri, sat):
-    print("%s %s %s %s" %(bulb,hue,bri,sat))
+    #print("%s %s %s %s" %(bulb,hue,bri,sat))
     h=int(hue)
     b=int(bri)
     s=int(sat)

@@ -8,6 +8,15 @@ You'll have to edit the huerc.py to add 2 things:
 
    api_key: you api key to interact with your hue bridge
 
+
+Like this:
+
+# huerc.py:
+# Set up your HUE_BRIDGE variable and API_KEY herer
+hue_bridge="IP ADDRESS"
+api_key="API_KEY"
+
+
 If you are unfamiliar with how to get an api key, check out the philips hue api key doc here:
 https://developers.meethue.com/philips-hue-api
 
